@@ -42,7 +42,7 @@ Setup, dispatch details, and validation for each target are in [docs/backends.md
 A model can be exported via:
 
 ```python
-chroma.compile(export, directory, backend=...) 
+chroma.compile(export, directory, backend=...)
 ```
 
  This emits an `ExportedProgram` or a `.pt2` path into `directory` and returns a `Program`. 
@@ -74,6 +74,7 @@ The first call allocates outputs; `out=` writes into contiguous arrays you own. 
 import torch
 from chroma import jit
 
+
 @jit(backend="cpu")
 def activation(x: torch.Tensor) -> torch.Tensor:
     return x.sin() + x
@@ -88,17 +89,19 @@ res = activation(torch.ones(8))
 
 The dev model is a 12-layer GPT-OSS-style mixture-of-experts network with 59,079,408 parameters and seeded random weights. It exercises expert routing, attention, and a 201,088-token vocabulary projection; it says nothing about language quality.
 
+<!-- benchmarks:readme -->
 Eight-token FP32 forward passes with identical weights, pooled from two runs of 100 calls after 10 warmups:
 
 | Target | Chroma | Torch eager |
 | --- | ---: | ---: |
-| Apple M3 CPU, macOS 27.0 | 5.533 ms | 10.447 ms |
-| Apple M3 Metal / MPS | 4.138 ms | 16.243 ms |
-| NVIDIA A100 | 4.255 ms | 24.865 ms |
+| Apple M3 CPU, macOS 27.0.1 | 5.31 ms | 10.63 ms |
+| Apple M3 Metal / MPS | 4.15 ms | 16.78 ms |
+| NVIDIA A100 | 4.25 ms | 24.86 ms |
 
 Calls return fresh NumPy arrays, and GPU times include host transfers and synchronization. On this graph, 1.90 MiB of distinct temporaries fit in a 74 KiB arena.
 
-With a 256-token KV cache, a decode step takes 2.336 ms on CPU, 3.194 ms on Metal, and 3.267 ms on the A100, against 53.186, 37.076, and 7.389 ms for Chroma's own padded, uncached graph. Method, compile times, and the raw reports are in [docs/benchmarks.md](docs/benchmarks.md).
+With a 256-token KV cache, a decode step takes 2.18 ms on CPU, 3.21 ms on Metal, and 3.27 ms on the A100, against 37.58, 37.17, and 7.39 ms for Chroma's own padded, uncached graph. Method, compile times, and the raw reports are in [docs/benchmarks.md](docs/benchmarks.md).
+<!-- /benchmarks:readme -->
 
 ## Development
 

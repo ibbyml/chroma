@@ -1,0 +1,208 @@
+{
+  "generated_by": "scripts/summarize_benchmarks.py from docs/benchmarks/*.json; do not edit",
+  "model": {
+    "parameter_count": 59079408,
+    "parameters": "59,079,408",
+    "parameters_millions": "59.08",
+    "layers": 12,
+    "hidden_size": 128,
+    "intermediate_size": 128,
+    "experts": 12,
+    "experts_per_token": 4,
+    "vocab_count": 201088,
+    "vocab": "201,088"
+  },
+  "memory": {
+    "arena_bytes": 75776,
+    "unreused_bytes": 1989120,
+    "weight_bytes": 236089856,
+    "arena": "74 KiB",
+    "unreused": "1.90 MiB",
+    "weights": "225 MiB",
+    "arena_exact": "75,776 bytes",
+    "unreused_exact": "1,989,120 bytes",
+    "reduction": "26"
+  },
+  "forward": {
+    "tokens": 8,
+    "runs": 2,
+    "calls": 100,
+    "warmup": 10,
+    "targets": {
+      "m3_cpu": {
+        "hardware": "Apple M3, macOS 27.0.1",
+        "software": "Python 3.14.0, Torch 2.14.0, Apple clang 21",
+        "measured_date": "2026-10-08",
+        "measured": "October 8, 2026",
+        "chroma": {
+          "median_ms": 5.3116245,
+          "p10_ms": 5.0686497,
+          "p90_ms": 5.6436756,
+          "median": "5.31"
+        },
+        "chroma_reuse": {
+          "median_ms": 5.2839375,
+          "p10_ms": 5.0660044,
+          "p90_ms": 5.7309631,
+          "median": "5.28"
+        },
+        "torch": {
+          "median_ms": 10.633896,
+          "p10_ms": 10.4020045,
+          "p90_ms": 11.2489997,
+          "median": "10.63"
+        },
+        "speedup_ratio": 2.002,
+        "speedup": "2.0",
+        "compile_s": 6.73,
+        "compile": "7",
+        "kernels": 289
+      },
+      "m3_metal": {
+        "hardware": "Apple M3, macOS 27.0.1",
+        "software": "Python 3.14.0, Torch 2.14.0, Apple clang 21",
+        "measured_date": "2026-10-08",
+        "measured": "October 8, 2026",
+        "chroma": {
+          "median_ms": 4.149438,
+          "p10_ms": 3.9763961,
+          "p90_ms": 6.3872538,
+          "median": "4.15"
+        },
+        "chroma_reuse": {
+          "median_ms": 4.1376875,
+          "p10_ms": 3.9837458,
+          "p90_ms": 6.6619375,
+          "median": "4.14"
+        },
+        "torch": {
+          "median_ms": 16.7791665,
+          "p10_ms": 16.4442545,
+          "p90_ms": 23.08285,
+          "median": "16.78"
+        },
+        "speedup_ratio": 4.0437,
+        "speedup": "4.0",
+        "compile_s": 5.22,
+        "compile": "5",
+        "kernels": 325
+      },
+      "a100": {
+        "hardware": "NVIDIA A100-SXM4-40GB",
+        "software": "Python 3.14.7, Torch 2.14.0+cu130, CUDA 13.0, GCC 13.3",
+        "measured_date": "2026-10-08",
+        "measured": "October 8, 2026",
+        "chroma": {
+          "median_ms": 4.254898,
+          "p10_ms": 4.1418497,
+          "p90_ms": 4.3661723,
+          "median": "4.25"
+        },
+        "chroma_reuse": {
+          "median_ms": 4.1668865,
+          "p10_ms": 4.1187685,
+          "p90_ms": 4.3104203,
+          "median": "4.17"
+        },
+        "torch": {
+          "median_ms": 24.8647495,
+          "p10_ms": 24.1293253,
+          "p90_ms": 25.5864747,
+          "median": "24.86"
+        },
+        "speedup_ratio": 5.8438,
+        "speedup": "5.8",
+        "compile_s": 43.16,
+        "compile": "43",
+        "kernels": 361
+      }
+    }
+  },
+  "decode": {
+    "context": 256,
+    "prompt": 32,
+    "steps": 32,
+    "rounds": 3,
+    "runs": 2,
+    "targets": {
+      "m3_cpu": {
+        "measured_date": "2026-10-08",
+        "measured": "October 8, 2026",
+        "cached": {
+          "median_ms": 2.1835415,
+          "p10_ms": 2.1222712,
+          "p90_ms": 2.3956589,
+          "median": "2.18"
+        },
+        "uncached": {
+          "median_ms": 37.5789585,
+          "p10_ms": 37.4451128,
+          "p90_ms": 38.4873795,
+          "median": "37.58"
+        },
+        "prefill": {
+          "median_ms": 54.0768125,
+          "p10_ms": 53.7982085,
+          "p90_ms": 54.5635625,
+          "median": "54.08"
+        },
+        "speedup_ratio": 17.2101,
+        "speedup": "17.2",
+        "compile_s": 16.64,
+        "compile": "17"
+      },
+      "m3_metal": {
+        "measured_date": "2026-10-08",
+        "measured": "October 8, 2026",
+        "cached": {
+          "median_ms": 3.210417,
+          "p10_ms": 3.1526959,
+          "p90_ms": 3.3975544,
+          "median": "3.21"
+        },
+        "uncached": {
+          "median_ms": 37.1737705,
+          "p10_ms": 37.1047172,
+          "p90_ms": 37.4145419,
+          "median": "37.17"
+        },
+        "prefill": {
+          "median_ms": 44.958979,
+          "p10_ms": 44.693396,
+          "p90_ms": 45.7781665,
+          "median": "44.96"
+        },
+        "speedup_ratio": 11.5791,
+        "speedup": "11.6",
+        "compile_s": 15.89,
+        "compile": "16"
+      },
+      "a100": {
+        "measured_date": "2026-10-08",
+        "measured": "October 8, 2026",
+        "cached": {
+          "median_ms": 3.2668735,
+          "p10_ms": 3.1870001,
+          "p90_ms": 3.4273179,
+          "median": "3.27"
+        },
+        "uncached": {
+          "median_ms": 7.3887485,
+          "p10_ms": 7.3439981,
+          "p90_ms": 7.4440122,
+          "median": "7.39"
+        },
+        "prefill": {
+          "median_ms": 9.8800605,
+          "p10_ms": 9.789594,
+          "p90_ms": 10.0866095,
+          "median": "9.88"
+        },
+        "speedup_ratio": 2.2617,
+        "speedup": "2.3",
+        "compile_s": 137.38,
+        "compile": "137"
+      }
+    }
+  }
+}
