@@ -1,0 +1,74 @@
+[build-system]
+requires = ["uv_build>=0.8.0,<1"]
+build-backend = "uv_build"
+
+[project]
+name = "chroma"
+version = "0.1.0"
+description = "An AOT fixed-shape compiler and runtime for PyTorch graph exports"
+readme = "README.md"
+license = "MIT"
+license-files = ["LICENSE"]
+authors = [
+    { name = "Ibrahim Khan" }
+]
+requires-python = ">=3.14"
+dependencies = [
+    "ml-dtypes>=0.6.0",
+    "numpy>=2.5.2",
+]
+
+[project.optional-dependencies]
+dev = [
+    "torch>=2.13.0",
+    "safetensors>=0.8.0",
+    "tiktoken>=0.14.0",
+    "pybind11>=3.0",
+]
+
+[dependency-groups]
+dev = ["ruff", "pytest", "ty"]
+
+[project.urls]
+Repository = "https://github.com/ibbyml/chroma"
+
+[tool.uv.build-backend]
+module-root = ""
+module-name = ["chroma"]
+source-include = [
+    "CMakeLists.txt",
+    "CMakePresets.json",
+    ".clangd",
+    ".clang-format",
+    ".gitignore",
+    ".python-version",
+    "uv.lock",
+    "scripts/**",
+    "tests/**",
+    "docs/**",
+]
+source-exclude = ["/build/**", "/CMakeUserPresets.json"]
+
+[tool.pytest.ini_options]
+pythonpath = ["."]
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 140
+target-version = "py314"
+
+[tool.ruff.lint]
+extend-select = ["I", "TID252", "ANN"]
+ignore = ["E731", "F722", "ANN401"]
+
+[tool.ruff.lint.flake8-tidy-imports]
+ban-relative-imports = "all"
+
+[tool.pyright]
+venvPath = "."
+venv = ".venv"
+pythonVersion = "3.14"
+typeCheckingMode = "standard"
+reportRedeclaration = "none"
+reportUnsupportedDunderAll = "none"
+reportArgumentType = "none"
